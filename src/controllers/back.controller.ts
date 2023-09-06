@@ -1,11 +1,11 @@
 import { Controller, Get } from "@nestjs/common";
-import { AppService } from "@/services/app.service";
+import { BackService } from "@/services/back.service";
 import { ApiTags, ApiOperation } from "@nestjs/swagger";
 
-@ApiTags("测试")
-@Controller("/")
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+@ApiTags("后台接口")
+@Controller("back")
+export class BackController {
+  constructor(private readonly appService: BackService) {}
 
   @Get()
   @ApiOperation({

@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { blue } from "kolorist";
 
 @Injectable()
-export class AppService {
+export class FrontService {
   getHello(): string {
     console.log(blue("[TEST]: 请求成功！"));
 
