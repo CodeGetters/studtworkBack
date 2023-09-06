@@ -6,6 +6,7 @@ import { blue } from "kolorist";
 export class PrismaService extends PrismaClient implements OnModuleInit {
   async onModuleInit() {
     await this.$connect();
+
     console.log(blue("[MYSQL]连接成功..."));
   }
 }
