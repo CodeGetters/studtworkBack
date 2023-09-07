@@ -14,7 +14,14 @@ export class AppService {
   }
 
   async createUser(data: Prisma.UserCreateInput): Promise<User> {
+    const res: Prisma.Prisma__UserClient<{
+      id: number;
+      name: string;
+      pwd: string;
+    }> = this.prisma.user.create({ data });
+
     console.log(blue("[CREATEUser]创建测试用户成功"));
-    return this.prisma.user.create({ data });
+
+    return res;
   }
 }
