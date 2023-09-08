@@ -5,17 +5,22 @@ import {
   AcceptLanguageResolver,
   HeaderResolver,
 } from "nestjs-i18n";
+import { JwtModule } from "@nestjs/jwt";
 import { Module } from "@nestjs/common";
 import { BackModule } from "./back.module";
 import { FrontModule } from "./front.module";
 import { AppService } from "@/services/app.service";
 import { PrismaService } from "@/db/mysql.service";
 import { AppController } from "@/controllers/app.controller";
-
 @Module({
   imports: [
     FrontModule,
     BackModule,
+
+    JwtModule.register({
+      global: true,
+    }),
+
     I18nModule.forRoot({
       fallbackLanguage: "en",
       loaderOptions: {
