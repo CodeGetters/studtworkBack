@@ -8,8 +8,8 @@ import {
   UploadedFile,
   UseInterceptors,
 } from "@nestjs/common";
-import { I18nLang } from "nestjs-i18n";
 import { Express } from "express";
+import { I18nLang } from "nestjs-i18n";
 import { AppService } from "@/services/app.service";
 import { createUserDto } from "@/common/dto/app.dto";
 import { AuthGuard } from "@/common/guard/auth.guard";

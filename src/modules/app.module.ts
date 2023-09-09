@@ -15,6 +15,7 @@ import { PrismaService } from "@/db/mysql.service";
 import { AppService } from "@/services/app.service";
 import { MulterModule } from "@nestjs/platform-express";
 import { AppController } from "@/controllers/app.controller";
+
 @Module({
   imports: [
     FrontModule,
@@ -39,6 +40,7 @@ import { AppController } from "@/controllers/app.controller";
     }),
 
     I18nModule.forRoot({
+      logging: true,
       fallbackLanguage: "en",
       loaderOptions: {
         path: join(__dirname, "/i18n/"),

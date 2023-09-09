@@ -17,3 +17,4 @@ yarn start:prod
 - TS
 - Prisma
 - Dual token authentication mechanism
+- upload File
