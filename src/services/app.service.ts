@@ -1,4 +1,5 @@
 import { blue } from "kolorist";
+import { Express } from "express";
 import { JwtService } from "@nestjs/jwt";
 import { Injectable } from "@nestjs/common";
 import { Prisma, User } from "@prisma/client";
@@ -81,9 +82,9 @@ export class AppService {
 
   /**
    * 文件上传
-   * @param file
+   * @param file:Express.Multer.File
    */
-  async uploadFile(file) {
-    return { file };
+  async uploadFile(file: Express.Multer.File) {
+    return { originalName: file.originalname, fileName: file.filename };
   }
 }

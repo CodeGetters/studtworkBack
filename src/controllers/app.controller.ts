@@ -9,6 +9,7 @@ import {
   UseInterceptors,
 } from "@nestjs/common";
 import { I18nLang } from "nestjs-i18n";
+import { Express } from "express";
 import { AppService } from "@/services/app.service";
 import { createUserDto } from "@/common/dto/app.dto";
 import { AuthGuard } from "@/common/guard/auth.guard";
@@ -59,7 +60,7 @@ export class AppController {
   @Post("upload")
   @ApiOperation({ summary: "示例 post 请求", description: "app 文件上传请求" })
   @UseInterceptors(FileInterceptor("file"))
-  uploadFile(@UploadedFile() file) {
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
     return this.appService.uploadFile(file);
   }
 }
