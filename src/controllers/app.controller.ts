@@ -3,12 +3,16 @@ import {
   Post,
   Body,
   Query,
+  UseGuards,
   Controller,
+  UploadedFile,
   UseInterceptors,
 } from "@nestjs/common";
+import { Express } from "express";
 import { I18nLang } from "nestjs-i18n";
 import { AppService } from "@/services/app.service";
 import { createUserDto } from "@/common/dto/app.dto";
+import { AuthGuard } from "@/common/guard/auth.guard";
 import { ApiTags, ApiOperation } from "@nestjs/swagger";
 import { FileInterceptor } from "@nestjs/platform-express";
 
@@ -37,11 +41,26 @@ export class AppController {
   }
 
   @Get("find")
+  @UseGuards(AuthGuard)
   @ApiOperation({
     summary: "示例 get 请求",
     description: "app 返回用户列表测试请求",
   })
   findUser(@Query() data) {
     return this.appService.findUser(Number(data.userId));
+  }
+
+  @Post("signIn")
+  @ApiOperation({ summary: "示例 post 请求", description: "app 用户登录请求" })
+  @UseInterceptors(FileInterceptor("file"))
+  signIn(@Body() data) {
+    return this.appService.signIn(data);
+  }
+
+  @Post("upload")
+  @ApiOperation({ summary: "示例 post 请求", description: "app 文件上传请求" })
+  @UseInterceptors(FileInterceptor("file"))
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    return this.appService.uploadFile(file);
   }
 }
